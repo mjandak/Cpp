@@ -2,30 +2,16 @@
 //
 
 #include <iostream>
+#include "BinarySearch.h"
+#include "Tests.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
-
-}
-
-int BinarySearch(int target, int orderedArr[], int size)
-{
-	int firstIdx = 0;
-	int lastIdx = size - 1;
-	while (firstIdx < lastIdx)
-	{
-		int middle = firstIdx + (lastIdx - firstIdx) / 2;
-		if (orderedArr[middle] == target) return middle;
-		if (target < orderedArr[middle])
-		{
-			lastIdx = middle;
-		}
-		else
-		{
-			firstIdx = middle + 1;
-		}
-	}
+	std::cout << Tests::Test1() << std::endl;
+	std::cout << Tests::Test2() << std::endl;
+	std::cout << Tests::Test3() << std::endl;
+	std::cout << Tests::Test4() << std::endl;
+    std::cout << "All tests passed.\n";
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
@@ -38,3 +24,36 @@ int BinarySearch(int target, int orderedArr[], int size)
 //   4. Use the Error List window to view errors
 //   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
 //   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+
+int BinarySearch::Find(int target, int orderedArr[], size_t size)
+{
+	int firstIdx = 0;
+	int lastIdx = size - 1;
+	while (true)
+	{
+		if (firstIdx > lastIdx)
+		{
+			throw "wtf?";
+		}
+		if (firstIdx == lastIdx)
+		{
+			if (orderedArr[firstIdx] == target)
+			{
+				return orderedArr[firstIdx];
+			}
+
+			//throw target + " not found";
+			throw std::exception(target + " not found");
+		}
+		int middle = firstIdx + (lastIdx - firstIdx) / 2;
+		//if (orderedArr[middle] == target) return middle;
+		if (target <= orderedArr[middle])
+		{
+			lastIdx = middle;
+		}
+		else
+		{
+			firstIdx = middle + 1;
+		}
+	}
+}
