@@ -11,6 +11,9 @@ int main()
 	std::cout << Tests::Test2() << std::endl;
 	std::cout << Tests::Test3() << std::endl;
 	std::cout << Tests::Test4() << std::endl;
+	std::cout << Tests::Test5() << std::endl;
+	std::cout << Tests::Test6() << std::endl;
+	std::cout << Tests::Test7() << std::endl;
     std::cout << "All tests passed.\n";
 }
 
@@ -39,11 +42,12 @@ int BinarySearch::Find(int target, int orderedArr[], size_t size)
 		{
 			if (orderedArr[firstIdx] == target)
 			{
-				return orderedArr[firstIdx];
+				return firstIdx;
 			}
 
 			//throw target + " not found";
-			throw std::exception(target + " not found");
+			//throw std::exception(target + " not found");
+			return -1;
 		}
 		int middle = firstIdx + (lastIdx - firstIdx) / 2;
 		//if (orderedArr[middle] == target) return middle;

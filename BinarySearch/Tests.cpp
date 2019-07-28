@@ -16,12 +16,9 @@ std::string Tests::Test1()
 	size_t size = 1;
 	auto res = BinarySearch::Find(target, orderedArr, size);
 	
-	if (res != target)
-	{
-		Failed(__func__);
-	}
+	if (res != 0) Failed(__func__);
 
-	return "found " + target;
+	return "found " + std::to_string(target) + " at " + std::to_string(res);
 }
 
 std::string Tests::Test2()
@@ -30,16 +27,9 @@ std::string Tests::Test2()
 	int orderedArr[1] = { 1 };
 	size_t size = 1;
 
-	try
-	{
-		BinarySearch::Find(target, orderedArr, size);
-	}
-	catch (const std::exception&)
-	{
-		return target + " not found";
-	}
-
-	Failed(__func__);
+	auto res = BinarySearch::Find(target, orderedArr, size);
+	if (res != -1) Failed(__func__);
+	return std::to_string(target)  + " not found";
 }
 
 std::string Tests::Test3()
@@ -50,12 +40,9 @@ std::string Tests::Test3()
 
 	auto res = BinarySearch::Find(target, orderedArr, size);
 
-	if (res != target)
-	{
-		Failed(__func__);
-	}
+	if (res != 5) Failed(__func__);
 
-	return "found " + target;
+	return "found " + std::to_string(target) + " at " + std::to_string(res);
 }
 
 std::string Tests::Test4()
@@ -64,14 +51,37 @@ std::string Tests::Test4()
 	int orderedArr[] = { -3, -2, -1, 0, 1, 2, 3, 4 , 5, 6, 7, 8, 9, 10 };
 	size_t size = 14;
 
-	try
-	{
-		BinarySearch::Find(target, orderedArr, size);
-	}
-	catch (const std::exception&)
-	{
-		return target + " not found";
-	}
+	auto res = BinarySearch::Find(target, orderedArr, size);
+	if (res != -1) Failed(__func__);
+	return std::to_string(target) + " not found";
+}
 
-	Failed(__func__);
+std::string Tests::Test5()
+{
+	int target = 1;
+	int orderedArr[] = { 1, 1, 1, 2, 2, 2, 3};
+	int size = 7;
+	auto res = BinarySearch::Find(target, orderedArr, size);
+	if (res != 0) Failed(__func__);
+	return "found " + std::to_string(target) + " at " + std::to_string(res);
+}
+
+std::string Tests::Test6()
+{
+	int target = 2;
+	int orderedArr[] = { 1, 1, 1, 2, 2, 2, 3 };
+	int size = 7;
+	auto res = BinarySearch::Find(target, orderedArr, size);
+	if (res != 3) Failed(__func__);
+	return "found " + std::to_string(target) + " at " + std::to_string(res);
+}
+
+std::string Tests::Test7()
+{
+	int target = 3;
+	int orderedArr[] = { 1, 1, 1, 2, 2, 2, 3 };
+	int size = 7;
+	auto res = BinarySearch::Find(target, orderedArr, size);
+	if (res != 6) Failed(__func__);
+	return "found " + std::to_string(target) + " at " + std::to_string(res);
 }

@@ -11,4 +11,7 @@ public:
 	static std::string Test2();
 	static std::string Test3();
 	static std::string Test4();
+	static std::string Test5();
+	static std::string Test6();
+	static std::string Test7();
 };
