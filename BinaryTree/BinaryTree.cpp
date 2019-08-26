@@ -25,8 +25,12 @@ int main()
 
 Node * buildTree(int numbers[], int startIdx, int lastIdx)
 {
+	if (startIdx > lastIdx)
+	{
+		throw std::invalid_argument("wtf?");
+	}
 	auto node = new Node();
-	node->idx = (lastIdx - startIdx) / 2 + 1;
+	node->idx = startIdx + (lastIdx - startIdx) / 2 + 1;
 	node->left = buildTree(numbers, startIdx, node->idx);
 	node->right = buildTree(numbers, node->idx + 1, lastIdx);
 	return node;
